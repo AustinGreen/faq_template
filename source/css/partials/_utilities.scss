@@ -1,0 +1,105 @@
+// ==========================================================================
+// Utilities
+// ==========================================================================
+
+
+// Calculate em values
+
+@function em($target, $context: $base__font-size) {
+  @return ($target / $context) * 1em;
+}
+  
+// Call the color palette modifiers
+
+@function palette($palette, $shade: 'base') {
+  @return map-get(map-get($palettes, $palette), $shade);
+}
+
+// Mixins
+  
+@mixin bg-colors($map) {
+  @each $theme, $color in $map {
+    &--#{$theme} {
+      background-color: $color;    
+    }
+  }
+}
+
+@mixin img-replace($img, $w, $h, $disp: block) {
+  background-image: url('#{$path--rel}/#{$img}');
+  background-repeat: no-repeat;
+  width: $w;
+  height: $h;
+  display: $disp;
+}
+      
+@mixin p-el(
+  $el,
+  $el-w: null,
+  $el-h: null) {
+    @if $el == "before" or $el == "after" {
+      &:#{$el} {
+        @extend %pseudos;
+        width: $el-w;
+        height: $el-h;
+        @content;
+      }
+    }
+    @else {
+      @error "`#{$el}` is not a valid pseudo-element.";
+    }
+}
+          
+
+/* -------------------------------- 
+
+BEM: Mixin, extends implementation
+
+# Naming
+(B)lock    : grid
+(E)lement  : grid__item
+(M)odifier : grid__item--half
+
+# CSS
+
+%item {
+  // Styles for grid__item
+}
+
+%half {
+  @extend %item;
+  // Styles for grid__item--half
+}
+
+.grid {
+  // Styles for grid
+
+  @include e(item) {
+    @extend %item;
+    @include m(half) {
+      @extend %half;
+    }
+  }
+}
+
+# HTML
+
+<div class="grid">
+  <div class="grid__item"></div>
+  <div class="grid__item"></div>
+  <div class="grid__item"></div>
+  <div class="grid__item--half"></div>
+</div>
+
+-------------------------------- */
+
+@mixin e($element) {
+	&__#{$element} {
+    @content;
+  }
+}
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
