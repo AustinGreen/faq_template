@@ -134,17 +134,3 @@ jQuery(document).ready(function($){
 		});
 	}
 });
-
-// My js
-$( document ).ready(function() {
-	$( "a.cd-faq-trigger" ).next('.cd-faq-content').slideToggle(200).end().parent('li').toggleClass('content-visible');
-});
-
-$( ".openall" ).click(function() {
-	$( "a.cd-faq-trigger" ).next('.cd-faq-content').slideToggle(200).end().parent('li').toggleClass('content-visible');
-	if($( ".openall" ).text() == "Close All") { 
-		$(".openall" ).text("Open All");
-	} else {
-		$(".openall" ).text("Close All");
-	}
-});

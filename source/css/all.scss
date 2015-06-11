@@ -8,7 +8,7 @@
 
 /* -------------------------------- 
 
-Primary style                      
+Primary style
 
 -------------------------------- */
 *, *::after, *::before {
@@ -696,27 +696,7 @@ header h1 {
   }
 }
 
-/* -------------------------------- 
-
-My styles
-
--------------------------------- */
-
-a {
-  transition: all .3s ease-in-out;
-}
-
 a:hover,
-a:active,
-a:focus, {
+a:focus {
   text-decoration: none;
-}
-
-.cd-faq-trigger:hover {
-  color: #615973
-}
-
-.no-padding {
-  padding: 10px;
-  margin: 0;
 }
